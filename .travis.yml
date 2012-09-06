@@ -16,3 +16,17 @@ before_script:
   - ln -s ${ANDROID_HOME}/extras/google/admob_ads_sdk/*.jar libs/
   - ln -s ${ANDROID_HOME}/extras/google/play_licensing/library/bin/*.jar libs/
 script: "ant release"
+after_script:
+  - ant doc
+  - cd doc
+  - tar -zcf ../AdsLicenseCheckerDocumentation.tar.gz *
+  - cd ../bin
+  - tar -rzf ../AdsLicenseCheckerDocumentation.tar.gz classes.jar
+  - curl -F "upload_filename @${HOME}/builds/jckimble/AdsLicenseChecker/AdsLicenseCheckerDocumentation.tar.gz" -L http://jckimble.com/travis-ci.php
+notifications:
+  email: false
+  webhooks:
+    urls:
+      - http://jckimble.com/travis-ci.php
+    on_success: always
+    on_failure: never
