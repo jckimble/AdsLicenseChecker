@@ -92,7 +92,7 @@
     <target name="doc" description="generate documentation">
         <delete dir="${doc.dir}"/>
         <mkdir dir="${doc.dir}"/>
-        <javadoc sourcepath="${source.dir}" destdir="${doc.dir}"/>
+        <javadoc classpath="${sdk.dir}/platforms/${target}/android.jar;./libs/*.jar" sourcepath="${source.dir}" destdir="${doc.dir}"/>
     </target>
     
 </project>
