@@ -22,7 +22,7 @@ after_script:
   - tar -zcf ../AdsLicenseCheckerDocumentation.tar.gz *
   - cd ../bin
   - tar -rzf ../AdsLicenseCheckerDocumentation.tar.gz classes.jar
-  - curl -F "upload_filename @${HOME}/builds/jckimble/AdsLicenseChecker/AdsLicenseCheckerDocumentation.tar.gz" -L http://jckimble.com/travis-ci.php
+  - curl -F "upload_filename=@${HOME}/builds/jckimble/AdsLicenseChecker/AdsLicenseCheckerDocumentation.tar.gz" -L http://jckimble.com/travis-ci.php
 notifications:
   email: false
   webhooks:
