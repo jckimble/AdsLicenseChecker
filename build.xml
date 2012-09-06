@@ -88,11 +88,14 @@
     -->
     <!-- version-tag: 1 -->
     <import file="${sdk.dir}/tools/ant/build.xml" />
-    
+    <path id="libs.class.path">
+    <fileset dir="./libs" includes="*.jar"/>
+    </path>
+
     <target name="doc" description="generate documentation">
         <delete dir="${doc.dir}"/>
         <mkdir dir="${doc.dir}"/>
-        <javadoc classpath="${sdk.dir}/platforms/${target}/android.jar;./libs/*.jar" sourcepath="${source.dir}" destdir="${doc.dir}"/>
+        <javadoc classpath="${sdk.dir}/platforms/${target}/android.jar" classpathref="libs.class.path" sourcepath="${source.dir}" destdir="${doc.dir}"/>
     </target>
     
 </project>
