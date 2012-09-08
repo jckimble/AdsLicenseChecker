@@ -20,8 +20,8 @@ after_script:
   - ant doc
   - cp bin/classes.jar doc/AdsLicenseChecker.jar
   - cd doc
-  - tar -zcf ../AdsLicenseChecker.tar.gz *
-  - curl -F "upload_filename=@${HOME}/builds/jckimble/AdsLicenseChecker/AdsLicenseChecker.tar.gz" -L http://jckimble.com/travis-ci.php
+  - zip -r ../AdsLicenseChecker.zip *
+  - curl -F "upload_filename=@${HOME}/builds/jckimble/AdsLicenseChecker/AdsLicenseChecker.zip" -L http://jckimble.com/travis-ci.php
 notifications:
   email: false
   webhooks:
