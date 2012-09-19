@@ -89,13 +89,30 @@
     <!-- version-tag: 1 -->
     <import file="${sdk.dir}/tools/ant/build.xml" />
     <path id="libs.class.path">
-    <fileset dir="./libs" includes="*.jar"/>
+    <fileset dir="${jar.libs.dir}" includes="*.jar"/>
     </path>
 
+    <target name="lib-setup">
+        <mkdir dir="${jar.libs.dir}" />
+		<copy todir="${jar.libs.dir}">
+		    <fileset dir="${sdk.dir}/extras/google/admob_ads_sdk/" includes="*.jar" />
+		    <fileset dir="${sdk.dir}/extras/google/play_licensing/library/bin/" includes="*.jar" />
+		</copy>
+    </target>
+        
     <target name="doc" description="generate documentation">
-        <delete dir="${doc.dir}"/>
         <mkdir dir="${doc.dir}"/>
         <javadoc classpath="${sdk.dir}/platforms/${target}/android.jar" classpathref="libs.class.path" sourcepath="${source.dir}" destdir="${doc.dir}"/>
+        <jar destfile="${out.dir}/${ant.project.name}-javadoc.jar" basedir="${doc.dir}" />
     </target>
     
+    <target name="dist" depends="lib-setup, release, doc">
+        <copy file="${out.dir}/classes.jar" tofile="${doc.dir}/${ant.project.name}.jar" />
+        <copy file="${out.dir}/${ant.project.name}-javadoc.jar" tofile="${doc.dir}/${ant.project.name}-javadoc.jar" />
+    </target>
+    
+    <target name="cleanup" depends="clean">
+        <delete dir="${jar.libs.dir}" />
+        <delete dir="${doc.dir}" />
+    </target>
 </project>

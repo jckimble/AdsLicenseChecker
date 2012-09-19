@@ -12,20 +12,6 @@ before_script:
   - ant release
   - cd ~/builds/jckimble/AdsLicenseChecker
   - android update project --path .
-  - mkdir libs
-  - ln -s ${ANDROID_HOME}/extras/google/admob_ads_sdk/*.jar libs/
-  - ln -s ${ANDROID_HOME}/extras/google/play_licensing/library/bin/*.jar libs/
-script: "ant release"
-after_script:
-  - ant doc
-  - cp bin/classes.jar doc/AdsLicenseChecker.jar
-  - cd doc
-  - zip -r ../AdsLicenseChecker.zip *
-  - curl -F "upload_filename=@${HOME}/builds/jckimble/AdsLicenseChecker/AdsLicenseChecker.zip" -L http://jckimble.com/travis-ci.php
+script: "ant dist"
 notifications:
   email: false
-  webhooks:
-    urls:
-      - http://jckimble.com/travis-ci.php
-    on_success: always
-    on_failure: never
