@@ -5,7 +5,7 @@ before_install:
   - tar -zxf android-sdk_r20-linux.tgz
   - export ANDROID_HOME=~/builds/jckimble/AdsLicenseChecker/android-sdk-linux
   - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
-  - android update sdk --filter 1,3,13,78,83 -a --no-ui --force
+  - android update sdk --filter platform-tool,tool,android-8,extra --no-ui --force
 before_script:
   - cd ${ANDROID_HOME}/extras/google/play_licensing/library
   - android update project --path . --target android-8
@@ -15,3 +15,5 @@ before_script:
 script: "ant dist"
 notifications:
   email: false
+
+
