@@ -101,6 +101,7 @@
     </target>
         
     <target name="doc" description="generate documentation">
+	<delete dir="${doc.dir}"/>
         <mkdir dir="${doc.dir}"/>
         <javadoc classpath="${sdk.dir}/platforms/${target}/android.jar" classpathref="libs.class.path" sourcepath="${source.dir}" destdir="${doc.dir}"/>
         <jar destfile="${out.dir}/${ant.project.name}-javadoc.jar" basedir="${doc.dir}" />
