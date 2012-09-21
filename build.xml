@@ -117,7 +117,7 @@
 	    <arg value="checkout"/>
 	    <arg value="gh-pages"/>
 	</exec>
-	<copy todir=".." verbose="true">
+	<copy todir="." verbose="true" overwrite="true">
 	    <fileset dir="${doc.dir}" includes="**"/>
 	</copy>
 	<exec executable="git">
